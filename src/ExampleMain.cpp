@@ -45,8 +45,8 @@ EnvCreateResult EnvCreateFunc(int index) {
 	};
 
 	// Make the arena
-	int playersPerTeam = 1;
-	auto arena = Arena::Create(GameMode::SOCCAR);
+	int playersPerTeam = 2;
+	auto arena = Arena::Create(GameMode::HOOPS);
 	for (int i = 0; i < playersPerTeam; i++) {
 		arena->AddCar(Team::BLUE);
 		arena->AddCar(Team::ORANGE);
@@ -96,7 +96,7 @@ void StepCallback(Learner* learner, const std::vector<GameState>& states, Report
 int main(int argc, char* argv[]) {
 	// Initialize RocketSim with collision meshes
 	// Change this path to point to your meshes!
-	RocketSim::Init("C:\\Users\\admin\\source\\repos\\RLArenaCollisionDumper\\collision_meshes");
+	RocketSim::Init("C:\\Users\\Chris\\Desktop\\RL\\GigaLearnCPP-Leak\\collision_meshes");
 
 	// Make configuration for the learner
 	LearnerConfig cfg = {};
@@ -134,9 +134,9 @@ int main(int argc, char* argv[]) {
 	cfg.ppo.policyLR = 1.5e-4;
 	cfg.ppo.criticLR = 1.5e-4;
 
-	cfg.ppo.sharedHead.layerSizes = { 256, 256 };
-	cfg.ppo.policy.layerSizes = { 256, 256, 256 };
-	cfg.ppo.critic.layerSizes = { 256, 256, 256 };
+	cfg.ppo.sharedHead.layerSizes = { 512, 512 };
+	cfg.ppo.policy.layerSizes = { 512, 512, 512 };
+	cfg.ppo.critic.layerSizes = { 512, 512, 512 };
 
 	auto optim = ModelOptimType::ADAM;
 	cfg.ppo.policy.optimType = optim;
