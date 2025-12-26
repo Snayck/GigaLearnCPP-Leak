@@ -16,7 +16,8 @@ RLGC::FList RLGC::DefaultObsPadded::BuildObs(const Player& player, const GameSta
 	for (int i = 0; i < player.prevAction.ELEM_AMOUNT; i++)
 		result += player.prevAction[i];
 
-	for (int i = 0; i < CommonValues::BOOST_LOCATIONS_AMOUNT; i++)
+	// Use actual number of boost pads from the arena (supports different game modes)
+	for (int i = 0; i < pads.size(); i++)
 		result += (float)pads[i];
 
 	FList selfObs = {};

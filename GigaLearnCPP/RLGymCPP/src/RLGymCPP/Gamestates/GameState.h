@@ -43,10 +43,8 @@ namespace RLGC {
 		void* userInfo = NULL;
 
 		GameState() {
-			boostPads = std::vector<bool>(CommonValues::BOOST_LOCATIONS_AMOUNT, true);
-			boostPadsInv = std::vector<bool>(CommonValues::BOOST_LOCATIONS_AMOUNT, true);
-			boostPadTimers = std::vector<float>(CommonValues::BOOST_LOCATIONS_AMOUNT, 0);
-			boostPadTimersInv = std::vector<float>(CommonValues::BOOST_LOCATIONS_AMOUNT, 0);
+			// Boost pad vectors will be resized dynamically based on arena type
+			// No need to pre-allocate here - UpdateFromArena will handle it
 		}
 		explicit GameState(Arena* arena) {
 			UpdateFromArena(arena, std::vector<Action>(arena->_cars.size()), NULL);

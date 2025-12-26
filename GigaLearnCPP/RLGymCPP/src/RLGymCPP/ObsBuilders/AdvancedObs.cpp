@@ -38,7 +38,8 @@ RLGC::FList RLGC::AdvancedObs::BuildObs(const Player& player, const GameState& s
 	for (int i = 0; i < player.prevAction.ELEM_AMOUNT; i++)
 		obs += player.prevAction[i];
 
-	for (int i = 0; i < CommonValues::BOOST_LOCATIONS_AMOUNT; i++) {
+	// Use actual number of boost pads from the arena (supports different game modes)
+	for (int i = 0; i < pads.size(); i++) {
 		// A clever trick that blends the boost pads using their timers
 		if (pads[i]) {
 			obs += 1.f; // Pad is already available
