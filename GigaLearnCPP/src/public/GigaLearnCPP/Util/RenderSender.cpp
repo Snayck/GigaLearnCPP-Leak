@@ -54,7 +54,7 @@ json PlayerToJSON(const Player& player) {
 
 json GameStateToJSON(const GameState& state) {
 	json j = {};
-	
+
 	j["ball"] = PhysToJSON(state.ball);
 
 	std::vector<json> players;
@@ -63,6 +63,15 @@ json GameStateToJSON(const GameState& state) {
 
 	j["players"] = players;
 	j["boost_pads"] = state.boostPads;
+
+	// Include boost pad locations for different arena types
+	if (state.lastArena) {
+		std::vector<FList> boostPadLocations;
+		for (auto& pad : state.lastArena->GetBoostPads()) {
+			boostPadLocations.push_back(VecToList(pad->config.pos));
+		}
+		j["boost_pad_locations"] = boostPadLocations;
+	}
 
 	return j;
 }

@@ -36,7 +36,7 @@ EnvCreateResult EnvCreateFunc(int index) {
 		// Game events
 		{ new ZeroSumReward(new BumpReward(), 0.5f), 20 },
 		{ new ZeroSumReward(new DemoReward(), 0.5f), 80 },
-		{ new GoalReward(), 150 }
+		{ new GoalReward(), 250 }
 	};
 
 	std::vector<TerminalCondition*> terminalConditions = {

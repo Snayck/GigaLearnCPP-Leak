@@ -27,6 +27,10 @@ def send_data_to_rsvis(j, gamemode):
         json_out["cars"].append(player)
     json_out["boost_pad_states"] = j['boost_pads']
 
+    # Include boost pad locations if available (for different arena types)
+    if 'boost_pad_locations' in j:
+        json_out["boost_pad_locations"] = j['boost_pad_locations']
+
     sock.sendto(json.dumps(json_out).encode(), (UDP_IP, UDP_PORT))
 
 def render_state(state_json_str):
